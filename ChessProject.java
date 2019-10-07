@@ -143,6 +143,20 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 		return oponent;
 	}
 
+  private Boolean checkBlackOponent(int newX, int newY){
+    Boolean oponent;
+    Component c1 = chessBoard.findComponentAt(newX, newY);
+    JLabel awaitingPiece = (JLabel)c1;
+    String tmp1 = awaitingPiece.getIcon().toString();
+    if(((tmp1.contains("White")))){
+      oponent = true;
+    }
+    else{
+      oponent = false;
+    }
+    return oponent;
+  }
+
 	/*
 		This method is called when we press the Mouse. So we need to find out what piece we have
 		selected. We may also not have selected a piece!
@@ -210,8 +224,41 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
       validMove = true;
     }
     else if(pieceName.equals("BlackPawn") ){
-      validMove = true;
-
+      if(startY == 6){//This is where the pawn is making its first move
+        if(((yMovement ==1 ) || (yMovement ==2 ))&& (startY > landingY) && (xMovement ==0)){
+          if(yMovement == 2){
+            if((!piecePresent(e.getX(),e.getY()) && (!piecePresent(e.getX(),e.getY()+75)))){
+              validMove = true;
+            }
+          }
+          else{
+            if(!piecePresent(e.getX(),e.getY())){
+              validMove = true;
+            }
+          }
+        }
+        else if((yMovement ==1 ) && (startY > landingY) && (xMovement ==1)){
+          if(piecePresent(e.getX(), e.getY())){
+            if(checkBlackOponent(e.getX(), e.getY())){
+              validMove = true;
+            }
+          }
+        }
+       }
+      else{//This is where the pawn is making its subsequent moves
+        if(((yMovement ==1 ))&& (startY > landingY) && (xMovement ==0)){
+          if(!piecePresent(e.getX(),e.getY())){
+            validMove = true;
+          }
+        }
+        else if((yMovement ==1 ) && (startY > landingY) && (xMovement ==1)){
+          if(piecePresent(e.getX(), e.getY())){
+            if(checkBlackOponent(e.getX(), e.getY())){
+              validMove = true;
+            }
+          }
+        }
+      }
     }
 		else if(pieceName.equals("WhitePawn")){
 			if(startY == 1)
