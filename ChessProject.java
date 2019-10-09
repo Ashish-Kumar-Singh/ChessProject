@@ -229,7 +229,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
       }
       else{
         if(((landingX == startX + 1) && (landingY == startY + 2))||((landingX == startX - 1)&& (landingY == startY + 2))||
-        ((landingX == startX + 2) && (landingY == startY +1))|| ((landingX == startX + 2) && (landingY == startY + 1))||
+        ((landingX == startX + 2) && (landingY == startY +1))|| ((landingX == startX - 2) && (landingY == startY + 1))||
         ((landingX == startX + 1) && (landingY == startY -2))|| ((landingX == startX - 1) && (landingY == startY - 2))||
         ((landingX == startX + 2) && (landingY == startY -1))|| ((landingX == startX - 2) && (landingY == startY - 1))){
           if(piecePresent(e.getX(),e.getY())){
