@@ -703,6 +703,12 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 					parent = (JPanel)chessBoard.getComponent(location);
 			    	parent.add(pieces);
         }
+        else{
+          Container parent = (Container)c;
+	            	pieces = new JLabel( new ImageIcon("BlackQueen.png") );
+					parent = (JPanel)chessBoard.getComponent(location);
+			    	parent.add(pieces);
+        }
       }
 			else if(success){
 				int location = 56 + (e.getX()/75);
