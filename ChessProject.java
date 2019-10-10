@@ -367,6 +367,38 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         }
       }
     }
+    else if(pieceName.contains("King")){
+      if(((landingX <0) || (landingX > 7)) || ((landingY < 0) || (landingY > 7))){
+        validMove = false;
+      }
+      else{
+        if(((yMovement == 1)||(yMovement == 0))&&((xMovement == 0)||(xMovement==1))){ //King can only move one square on the x and y axis
+          if(!piecePresent(e.getX(), e.getY())){
+            validMove=true;
+          }
+            else{
+              if(piecePresent(e.getX(), (e.getY()))){
+                if(pieceName.contains("White")){
+                  if(checkWhiteOponent(e.getX(), e.getY())){
+                    validMove=true;
+                  }
+                  else{
+                    validMove=false;
+                  }
+                }
+                else{
+                  if(checkBlackOponent(e.getX(), e.getY())){
+                    validMove=true;
+                  }
+                }
+              }
+            }
+
+
+        }
+      }
+
+    }
     else if(pieceName.contains("Rook")){
       Boolean intheway = false;
       if(((landingX <0) || (landingX > 7)) || ((landingY < 0) || (landingY > 7))){
