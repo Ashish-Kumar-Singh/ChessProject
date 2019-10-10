@@ -331,6 +331,12 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     }
     else if(pieceName.contains("Rook")){
       Boolean intheway = false;
+      if(((landingX <0) || (landingX > 7)) || ((landingY < 0) || (landingY > 7))){
+        validMove = false;
+      }
+      else{
+        if(((Math.abs(startX-landingX)!=0)&&(Math.abs(startY-landingY)==0))|| (()))
+      }
     }
     else if(pieceName.equals("BlackPawn") ){
       if(startY == 6){//This is where the pawn is making its first move --- Video Tutorial
