@@ -194,6 +194,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 
         chessPiece.setVisible(false);
 		Boolean success =false;
+    Boolean progression = false;
         Component c =  chessBoard.findComponentAt(e.getX(), e.getY());
 		String tmp = chessPiece.getIcon().toString();
 		String pieceName = tmp.substring(0, (tmp.length()-4));
@@ -328,6 +329,9 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
          }
       }
     }
+    else if(pieceName.contains("Rook")){
+      Boolean intheway = false;
+    }
     else if(pieceName.equals("BlackPawn") ){
       if(startY == 6){//This is where the pawn is making its first move --- Video Tutorial
         if(((yMovement ==1 ) || (yMovement ==2 ))&& (startY > landingY) && (xMovement ==0)){
@@ -354,12 +358,18 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         if(((yMovement ==1 ))&& (startY > landingY) && (xMovement ==0)){
           if(!piecePresent(e.getX(),e.getY())){
             validMove = true;
+            if(landingY == 0){
+              progression = true;
+            }
           }
         }
         else if((yMovement ==1 ) && (startY > landingY) && (xMovement ==1)){
           if(piecePresent(e.getX(), e.getY())){
             if(checkBlackOponent(e.getX(), e.getY())){
               validMove = true;
+              if(landingY == 0){
+                progression = true;
+              }
             }
           }
         }
@@ -445,7 +455,17 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 		    panels.add(pieces);
 		}
 		else{
-			if(success){
+      if(progression){
+        int location = 0 + (e.getX()/75);
+        if(c instanceof JLabel){
+          Container parent = c.getParent();
+          parent.remove(0);
+          pieces = new JLabel( new ImageIcon("BlackQueen.png") );
+					parent = (JPanel)chessBoard.getComponent(location);
+			    	parent.add(pieces);
+        }
+      }
+			else if(success){
 				int location = 56 + (e.getX()/75);
 				if (c instanceof JLabel){
 	            	Container parent = c.getParent();
