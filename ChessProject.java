@@ -20,6 +20,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 	int initialY;
 	JPanel panels;
 	JLabel pieces;
+  Boolean WhiteTurn;
+  Boolean BlackTurn;
 
 
     public ChessProject(){
@@ -31,7 +33,8 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
         layeredPane.setPreferredSize(boardSize);
         layeredPane.addMouseListener(this);
         layeredPane.addMouseMotionListener(this);
-
+        WhiteTurn = true;
+        BlackTurn = false;
 
 
         //Add a chess board to the Layered Pane
@@ -216,6 +219,7 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
     System.out.println("The xMovement is : "+xMovement);
     System.out.println("The yMovement is : "+yMovement);
     System.out.println("The landing coordinates are : "+"("+landingX+","+landingY+")");
+
 		/*
 			The only piece that has been enabled to move is a White Pawn...but we should really have this is a separate
 			method somewhere...how would this work.
@@ -227,6 +231,16 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 			If a Pawn makes it to the top of the other side, the Pawn can turn into any other piece, for
 			demonstration purposes the Pawn here turns into a Queen.
 		*/
+    if((pieceName.contains("White")) && (BlackTurn == flase) && (WhiteTurn == true)){
+      validMove = true;
+    }
+    else if((pieceName.contains("Black")) && (WhiteTurn == flase)&& (BlackTurn == true)){
+      validMove = true;
+    }
+    else{
+      validMove = false;
+    }
+
     if(pieceName.contains("Queen")){
       Boolean intheway = false;
       int distance = Math.abs(startX - landingX);
