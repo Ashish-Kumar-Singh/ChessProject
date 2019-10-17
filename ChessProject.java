@@ -129,6 +129,21 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 		}
 	}
 
+  private void switchOpponent(){
+    if(BlackTurn == true){
+      BlackTurn = false;
+    }
+    else{
+      BlackTurn = true;
+    }
+    if(WhiteTurn == true){
+      WhiteTurn = false;
+    }
+    else{
+      WhiteTurn = true;
+    }
+  }
+
 	/*
 		This is a method to check if a piece is a Black piece.
 	*/
@@ -231,10 +246,10 @@ public class ChessProject extends JFrame implements MouseListener, MouseMotionLi
 			If a Pawn makes it to the top of the other side, the Pawn can turn into any other piece, for
 			demonstration purposes the Pawn here turns into a Queen.
 		*/
-    if((pieceName.contains("White")) && (BlackTurn == flase) && (WhiteTurn == true)){
+    if((pieceName.contains("White")) && (BlackTurn == false) && (WhiteTurn == true)){
       validMove = true;
     }
-    else if((pieceName.contains("Black")) && (WhiteTurn == flase)&& (BlackTurn == true)){
+    else if((pieceName.contains("Black")) && (WhiteTurn == false)&& (BlackTurn == true)){
       validMove = true;
     }
     else{
